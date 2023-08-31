@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Output.h"
+#include <iostream>
 
 inline int img_w{256};
 inline int img_h{256};

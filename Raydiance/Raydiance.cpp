@@ -13,6 +13,7 @@ int main()
 
 	for (int y{0}; y < img_h; y++)
 	{
+		clog << "\rScan lines remaining: " << img_h - y << ' ' << flush;
 		for (int x{0}; x < img_w; x++)
 		{
 			const auto r{static_cast<double>(x) / (img_w - 1)};
@@ -26,6 +27,7 @@ int main()
 			img_out << ir << ' ' << ig << ' ' << ib << '\n';
 		}
 	}
+	clog << "\nRender complete.\n";
 
 	img_out.close();
 
