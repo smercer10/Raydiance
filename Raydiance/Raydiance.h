@@ -3,8 +3,7 @@
 
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <filesystem>
+#include "Output.h"
 
-// TODO: Reference additional headers your program requires here.
+inline int img_w{256};
+inline int img_h{256};
