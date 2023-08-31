@@ -5,9 +5,10 @@ namespace fs = std::filesystem;
 
 string get_timestamp()
 {
-	const time_t t{std::time(nullptr)};
-	tm tm{};
+	const time_t t{ time(nullptr) }; // Current time
+	tm tm{}; // Struct to store time components
 
+	// Unable to get time
 	if (localtime_s(&tm, &t))
 		return "";
 
@@ -22,7 +23,7 @@ ofstream open_output_file(const string& id)
 	if (!fs::exists(id))
 		fs::create_directory(id);
 
-	const string filename{id + "-" + get_timestamp() + ".ppm"};
+	const string filename{ id + "-" + get_timestamp() + ".ppm" };
 
 	ofstream out(id + "/" + filename);
 
