@@ -1,9 +1,8 @@
 #include "Output.h"
 
-using namespace std;
 namespace fs = std::filesystem;
 
-string get_timestamp()
+std::string get_timestamp()
 {
 	const time_t t{ time(nullptr) }; // Current time
 	tm tm{}; // Struct to store time components
@@ -12,20 +11,20 @@ string get_timestamp()
 	if (localtime_s(&tm, &t))
 		return "";
 
-	ostringstream oss{};
-	oss << put_time(&tm, "%d-%m-%Y-%H-%M-%S");
+	std::ostringstream oss{};
+	oss << std::put_time(&tm, "%d-%m-%Y-%H-%M-%S");
 
 	return oss.str();
 }
 
-ofstream open_output_file(const string& id)
+std::ofstream open_output_file(const std::string& id)
 {
 	if (!fs::exists(id))
 		fs::create_directory(id);
 
-	const string filename{ id + "-" + get_timestamp() + ".ppm" };
+	const std::string filename{ id + "-" + get_timestamp() + ".ppm" };
 
-	ofstream out(id + "/" + filename);
+	std::ofstream out(id + "/" + filename);
 
 	return out;
 }

@@ -3,8 +3,6 @@
 #include <cmath>
 #include <iostream>
 
-using std::sqrt;
-
 class Vec3
 {
 public:
@@ -56,7 +54,7 @@ public:
 
 	double length() const
 	{
-		return sqrt(length_squared());
+		return std::sqrt(length_squared());
 	}
 };
 
