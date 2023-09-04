@@ -16,15 +16,10 @@ int main()
 		clog << "\rScan lines remaining: " << img_h - y << ' ' << flush;
 		for (int x{ 0 }; x < img_w; x++)
 		{
-			const auto r{ static_cast<double>(x) / (img_w - 1) };
-			const auto g{ static_cast<double>(y) / (img_h - 1) };
-			constexpr auto b{ 0.25 };
+			auto pixel_color = Color{ static_cast<double>(x) / (img_w - 1),
+				static_cast<double>(y) / (img_h - 1), 0 };
 
-			const int ir{ static_cast<int>(255.999 * r) };
-			const int ig{ static_cast<int>(255.999 * g) };
-			constexpr int ib{ static_cast<int>(255.999 * b) };
-
-			img_out << ir << ' ' << ig << ' ' << ib << '\n';
+			write_color(img_out, pixel_color);
 		}
 	}
 	clog << "\nRender complete.\n";

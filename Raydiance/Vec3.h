@@ -46,7 +46,7 @@ public:
 
 	Vec3 operator/=(const double t)
 	{
-		return *this *= 1 / t;
+		return *this *= 1 / t; // Reuse vector *= scalar overload
 	}
 
 	double length_squared() const
@@ -60,9 +60,7 @@ public:
 	}
 };
 
-// Type alises
 using Point3 = Vec3;
-using Color = Vec3;
 
 // Write to output stream in ppm format
 inline std::ostream& operator<<(std::ostream& out, const Vec3& v)
@@ -121,5 +119,5 @@ inline Vec3 cross(const Vec3& u, const Vec3& v)
 
 inline Vec3 unit_vector(Vec3 v)
 {
-	return v / v.length();
+	return v / v.length(); // Reuse vector / scalar overload
 }
