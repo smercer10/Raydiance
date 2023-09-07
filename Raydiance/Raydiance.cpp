@@ -1,7 +1,16 @@
-﻿// Raydiance.cpp : Defines the entry point for the application.
+﻿//
+// Radiance entry point
 //
 
 #include "Raydiance.h"
+
+// Simple blue and white gradient background
+Color ray_color(const Ray& r)
+{
+	Vec3 unit_dir = unit_vector(r.direction());
+	auto t = 0.5 * (unit_dir.y() + 1.0); // Scale y to [0, 1]
+	return (1.0 - t) * Color(1.0, 1.0, 1.0) + (t * Color(0.5, 0.7, 1.0));
+}
 
 int main()
 {
@@ -16,8 +25,13 @@ int main()
 
 		for (int x{ 0 }; x < img_w; x++)
 		{
-			auto pixel_color = Color{ static_cast<double>(x) / (img_w - 1),
-				static_cast<double>(y) / (img_h - 1), 0 };
+			auto pixel_center = pixel00_loc + (pixel_delta_u * x)
+				+ (pixel_delta_v * y);
+
+			auto ray_dir = pixel_center - cam_center;
+			Ray r(cam_center, ray_dir);
+
+			Color pixel_color = ray_color(r);
 
 			write_color(img_out, pixel_color);
 		}

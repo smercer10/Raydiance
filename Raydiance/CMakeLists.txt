@@ -4,7 +4,7 @@
 
 # Add source to this project's executable.
 add_executable (Raydiance "Raydiance.cpp" "Raydiance.h" "Output.cpp" "Output.h"
-	"Vec3.h" "Color.h" "Color.cpp")
+	"Vec3.h" "Color.h" "Color.cpp" "Ray.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Raydiance PROPERTY CXX_STANDARD 20)
